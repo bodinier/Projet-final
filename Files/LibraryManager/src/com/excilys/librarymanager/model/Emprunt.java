@@ -5,11 +5,11 @@ public class Emprunt {
     /**
      * --------------------------   Attributs d'un emprunt  --------------------------
      */
-    int id;
-    Livre livre;
-    Membre membre;
-    java.time.LocalDate dateEmprunt;
-    java.time.LocalDate dateRetour;
+    private int id;
+    private Livre livre;
+    private Membre membre;
+    private java.time.LocalDate dateEmprunt;
+    private java.time.LocalDate dateRetour;
 
     /**
      * --------------------------   Constructeurs   --------------------------
@@ -23,14 +23,14 @@ public class Emprunt {
      * @param newDateEmprunt
      * @param newDateRetour
      */
-    Emprunt(int newId, Livre newLivre, Membre newMembre, java.time.LocalDate newDateEmprunt, java.time.LocalDate newDateRetour){
+    public Emprunt(int newId, Livre newLivre, Membre newMembre, java.time.LocalDate newDateEmprunt, java.time.LocalDate newDateRetour){
         this.id = newId;
         this.livre = newLivre;
         this.membre = newMembre;
         this.dateEmprunt = newDateEmprunt;
         this.dateRetour = newDateRetour;
     }
-
+    public Emprunt(){}
     /**
      * --------------------------   Getter  --------------------------
      */
@@ -71,5 +71,14 @@ public class Emprunt {
     }
     public void setDateRetour(java.time.LocalDate newDateRetour){
         this.dateRetour = newDateRetour;
+    }
+    /**
+     * --------------------------  Methode  --------------------------
+     */
+    @Override
+    public String toString(){
+        String str = "ID " + id + " : " + livre.getTitre() + "-" + livre.getAuteur() + " emprunté par : " + membre.getPrenom() + " " + membre.getNom()
+                        + " du " + dateEmprunt + " au " + dateRetour;
+        return str;
     }
 }

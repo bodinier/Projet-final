@@ -4,10 +4,10 @@ public class Livre {
     /**
      * --------------------------   Attributs d'un livre    --------------------------
      */
-    int id;
-    String titre;
-    String auteur;
-    String isbn;
+    private int id;
+    private String titre;
+    private String auteur;
+    private String isbn;
 
     /**
      * --------------------------   Constructeurs   --------------------------
@@ -19,13 +19,13 @@ public class Livre {
      * @param newAuteur
      * @param newIsbn
      */
-    Livre(int newId, String newTitre, String newAuteur, String newIsbn){
+    public Livre(int newId, String newTitre, String newAuteur, String newIsbn){
         this.id = newId;
         this.titre = newTitre;
         this.auteur = newAuteur;
         this.isbn = newIsbn;
     }
-
+    public Livre(){}
     /**
      * --------------------------  Getter  --------------------------
      */
@@ -50,5 +50,22 @@ public class Livre {
      */
     public void setId(int newId){
         this.id = newId;
+    }
+    public void setTitre(String newTitre){
+        this.titre = newTitre;
+    }
+    public void setAuteur(String newAuteur){
+        this.auteur = newAuteur;
+    }
+    public void setIsbn(String newIsbn){
+        this.isbn = newIsbn;
+    }
+    /**
+     * --------------------------  Methode  --------------------------
+     */
+    @Override
+    public String toString(){
+        String str = "ID " + id + " : " + titre + "-" + auteur + "(ISBN : " + isbn + ")";
+        return str;
     }
 }

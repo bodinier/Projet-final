@@ -1,5 +1,6 @@
 package com.excilys.librarymanager.model;
 
+import java.time.LocalDate;
 
 public class Emprunt {
     /**
@@ -8,8 +9,8 @@ public class Emprunt {
     private int id;
     private Livre livre;
     private Membre membre;
-    private java.time.LocalDate dateEmprunt;
-    private java.time.LocalDate dateRetour;
+    private LocalDate dateEmprunt;
+    private LocalDate dateRetour;
 
     /**
      * --------------------------   Constructeurs   --------------------------
@@ -23,7 +24,7 @@ public class Emprunt {
      * @param newDateEmprunt
      * @param newDateRetour
      */
-    public Emprunt(int newId, Livre newLivre, Membre newMembre, java.time.LocalDate newDateEmprunt, java.time.LocalDate newDateRetour){
+    public Emprunt(int newId, Livre newLivre, Membre newMembre, LocalDate newDateEmprunt, LocalDate newDateRetour){
         this.id = newId;
         this.livre = newLivre;
         this.membre = newMembre;
@@ -46,11 +47,11 @@ public class Emprunt {
         return this.membre;
     }
 
-    public java.time.LocalDate getDateEmprunt(){
+    public LocalDate getDateEmprunt(){
         return this.dateEmprunt;
     }
 
-    public java.time.LocalDate getDateRetour(){
+    public LocalDate getDateRetour(){
         return this.dateRetour;
     }
 
@@ -66,10 +67,10 @@ public class Emprunt {
     public void setMembre(Membre newMembre){
         this.membre = newMembre;
     }
-    public void setDateEmprunt(java.time.LocalDate newDateEmprunt){
+    public void setDateEmprunt(LocalDate newDateEmprunt){
         this.dateEmprunt = newDateEmprunt;
     }
-    public void setDateRetour(java.time.LocalDate newDateRetour){
+    public void setDateRetour(LocalDate newDateRetour){
         this.dateRetour = newDateRetour;
     }
     /**

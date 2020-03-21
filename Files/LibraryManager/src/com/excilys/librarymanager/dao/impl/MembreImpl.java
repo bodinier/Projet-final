@@ -1,4 +1,4 @@
-package com.excilys.librarymanager.impl;
+package com.excilys.librarymanager.dao.impl;
 import java.util.List;
 
 import com.excilys.librarymanager.dao.MembreDao;

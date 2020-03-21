@@ -1,6 +1,6 @@
 package com.excilys.librarymanager.dao;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.List;
 
 import com.excilys.librarymanager.exception.DaoException;
@@ -12,7 +12,7 @@ public interface EmpruntDao {
 	public List<Emprunt> getListCurrentByMembre(int idMembre) throws DaoException;
 	public List<Emprunt> getListCurrentByLivre(int idLivre) throws DaoException;
 	public Emprunt getById(int id) throws DaoException;
-	public void create(int idMembre, int idLivre, LocalDate dateEmprunt) throws DaoException;
+	public void create(int idMembre, int idLivre, Date dateEmprunt, Date dateRetour) throws DaoException;
 	public void update(Emprunt emprunt) throws DaoException;
 	public int count() throws DaoException;
 }

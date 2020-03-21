@@ -77,8 +77,10 @@ public class Emprunt {
      */
     @Override
     public String toString(){
-        String str = "ID " + id + " : " + livre.getTitre() + "-" + livre.getAuteur() + " emprunté par : " + membre.getPrenom() + " " + membre.getNom()
-                        + " du " + dateEmprunt + " au " + dateRetour;
+        String str = "ID " + id + " : " + livre.getTitre() + " - " + livre.getAuteur() + " emprunté par : "
+             + membre.getPrenom() + " " + membre.getNom()
+                 + " du " + dateEmprunt + " au " + dateRetour + ".";
         return str;
     }
+    
 }

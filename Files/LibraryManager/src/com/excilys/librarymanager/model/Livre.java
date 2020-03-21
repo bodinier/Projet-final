@@ -65,7 +65,7 @@ public class Livre {
      */
     @Override
     public String toString(){
-        String str = "ID " + id + " : " + titre + "-" + auteur + "(ISBN : " + isbn + ")";
+        String str = "ID " + id + " : " + titre + " - " + auteur + " (ISBN : " + isbn + ")";
         return str;
     }
 }

@@ -78,8 +78,8 @@ public class Membre {
      */
     @Override
     public String toString(){
-        String str = "ID " + id + " : " + prenom + "-" + nom + "Adresse : " + adresse + " "
-                        + "email " + email + " telephone : " + telephone + " Abonnement = " + abonnement;
+        String str = "ID " + id + " / prenom : " + prenom + " / nom : " + nom + " / Adresse : " + adresse 
+            + " / email : " + email + " / telephone : " + telephone + " / Abonnement = " + abonnement;
         return str;
     }
 }

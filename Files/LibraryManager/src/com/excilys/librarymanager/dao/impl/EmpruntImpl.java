@@ -50,18 +50,7 @@ public class EmpruntImpl implements EmpruntDao {
 				Livre livre = new Livre(res.getInt("idLivre"), res.getString("titre"), res.getString("auteur"), res.getString("isbn"));
 
 				String abonnement = res.getString("abonnement").toLowerCase();
-				Abonnement abo=null;
-				switch (abonnement){
-					case "basic" :
-						abo = Abonnement.BASIC;
-						break;
-					case "premium" :
-						abo = Abonnement.PREMIUM;
-						break;
-					case "vip" :
-						abo = Abonnement.VIP;
-						break;
-				}
+				Abonnement abo = Abonnement.aboFromString(abonnement);
 				Membre membre = new Membre(res.getInt("idMembre"), res.getString("nom"), res.getString("prenom"), res.getString("adresse"), res.getString("email"), res.getString("telephone"), abo);
 				Emprunt e = new Emprunt(res.getInt("id"), livre, membre, res.getDate("dateEmprunt").toLocalDate(), res.getDate("dateRetour").toLocalDate());
 				emprunts.add(e);
@@ -85,18 +74,7 @@ public class EmpruntImpl implements EmpruntDao {
 				Livre livre = new Livre(res.getInt("idLivre"), res.getString("titre"), res.getString("auteur"), res.getString("isbn"));
 
 				String abonnement = res.getString("abonnement").toLowerCase();
-				Abonnement abo=null;
-				switch (abonnement){
-					case "basic" :
-						abo = Abonnement.BASIC;
-						break;
-					case "premium" :
-						abo = Abonnement.PREMIUM;
-						break;
-					case "vip" :
-						abo = Abonnement.VIP;
-						break;
-				}
+				Abonnement abo = Abonnement.aboFromString(abonnement);
 				Membre membre = new Membre(res.getInt("idMembre"), res.getString("nom"), res.getString("prenom"), res.getString("adresse"), res.getString("email"), res.getString("telephone"), abo);
 				Emprunt e = new Emprunt(res.getInt("id"), livre, membre, res.getDate("dateEmprunt").toLocalDate(), res.getDate("dateRetour").toLocalDate());
 				emprunts.add(e);
@@ -124,18 +102,7 @@ public class EmpruntImpl implements EmpruntDao {
 				Livre livre = new Livre(res.getInt("idLivre"), res.getString("titre"), res.getString("auteur"), res.getString("isbn"));
 
 				String abonnement = res.getString("abonnement").toLowerCase();
-				Abonnement abo=null;
-				switch (abonnement){
-					case "basic" :
-						abo = Abonnement.BASIC;
-						break;
-					case "premium" :
-						abo = Abonnement.PREMIUM;
-						break;
-					case "vip" :
-						abo = Abonnement.VIP;
-						break;
-				}
+				Abonnement abo = Abonnement.aboFromString(abonnement);
 				Membre membre = new Membre(res.getInt("idMembre"), res.getString("nom"), res.getString("prenom"), res.getString("adresse"), res.getString("email"), res.getString("telephone"), abo);
 				Emprunt e = new Emprunt(res.getInt("id"), livre, membre, res.getDate("dateEmprunt").toLocalDate(), res.getDate("dateRetour").toLocalDate());
 				emprunts.add(e);
@@ -174,18 +141,7 @@ public class EmpruntImpl implements EmpruntDao {
 				Livre livre = new Livre(res.getInt("idLivre"), res.getString("titre"), res.getString("auteur"), res.getString("isbn"));
 
 				String abonnement = res.getString("abonnement").toLowerCase();
-				Abonnement abo=null;
-				switch (abonnement){
-					case "basic" :
-						abo = Abonnement.BASIC;
-						break;
-					case "premium" :
-						abo = Abonnement.PREMIUM;
-						break;
-					case "vip" :
-						abo = Abonnement.VIP;
-						break;
-				}
+				Abonnement abo = Abonnement.aboFromString(abonnement);
 				Membre membre = new Membre(res.getInt("idMembre"), res.getString("nom"), res.getString("prenom"), res.getString("adresse"), res.getString("email"), res.getString("telephone"), abo);
 				Emprunt e = new Emprunt(res.getInt("id"), livre, membre, res.getDate("dateEmprunt").toLocalDate(), res.getDate("dateRetour").toLocalDate());
 				emprunts.add(e);
@@ -222,18 +178,7 @@ public class EmpruntImpl implements EmpruntDao {
 				Livre livre = new Livre(res.getInt("idLivre"), res.getString("titre"), res.getString("auteur"), res.getString("isbn"));
 
 				String abonnement = res.getString("abonnement").toLowerCase();
-				Abonnement abo = null;
-				switch (abonnement){
-					case "basic" :
-						abo = Abonnement.BASIC;
-						break;
-					case "premium" :
-						abo = Abonnement.PREMIUM;
-						break;
-					case "vip" :
-						abo = Abonnement.VIP;
-						break;
-				}
+				Abonnement abo = Abonnement.aboFromString(abonnement);
 				Membre membre = new Membre(res.getInt("idMembre"), res.getString("nom"), res.getString("prenom"), res.getString("adresse"), res.getString("email"), res.getString("telephone"), abo);
 				Emprunt emp = new Emprunt(res.getInt("id"), livre, membre, res.getDate("dateEmprunt").toLocalDate(), res.getDate("dateRetour").toLocalDate());
 				System.out.println("GET: " + emp);

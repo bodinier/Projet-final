@@ -1,7 +1,12 @@
 package com.excilys.librarymanager.exception;
 
 public class DaoException extends Exception {
-    public DaoException() {
+    /**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public DaoException() {
 		super();
 	}
 

@@ -23,7 +23,7 @@ public class LivreImpl implements LivreDao {
 		}
 		return instance;
 	}
-	private static final String INSERT_ROW = "INSERT INTO livre(titre, auteur, isbn) VALUES (?; ?; ?);";
+	private static final String INSERT_ROW = "INSERT INTO livre(titre, auteur, isbn) VALUES (?, ?, ?);";
 	private static final String UPDATE = "UPDATE livre SET titre = ?, auteur = ?, isbn = ? WHERE id = ?;";
 	private static final String COUNT_ALL = "SELECT COUNT(id) AS count FROM livre;";
 	private static final String SELECT_BY_ID = "Select id, titre, auteur, isbn FROM livre WHERE id = ?;";

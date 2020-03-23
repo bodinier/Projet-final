@@ -25,6 +25,11 @@ public class Livre {
         this.auteur = newAuteur;
         this.isbn = newIsbn;
     }
+    public Livre(String newTitre, String newAuteur, String newIsbn){
+        this.titre = newTitre;
+        this.auteur = newAuteur;
+        this.isbn = newIsbn;
+    }
     public Livre(){}
     /**
      * --------------------------  Getter  --------------------------

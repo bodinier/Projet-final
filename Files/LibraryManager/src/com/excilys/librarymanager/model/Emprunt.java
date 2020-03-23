@@ -31,6 +31,12 @@ public class Emprunt {
         this.dateEmprunt = newDateEmprunt;
         this.dateRetour = newDateRetour;
     }
+    public Emprunt(Livre newLivre, Membre newMembre, LocalDate newDateEmprunt, LocalDate newDateRetour){
+        this.livre = newLivre;
+        this.membre = newMembre;
+        this.dateEmprunt = newDateEmprunt;
+        this.dateRetour = newDateRetour;
+    }
     public Emprunt(){}
     /**
      * --------------------------   Getter  --------------------------

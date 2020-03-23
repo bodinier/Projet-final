@@ -24,6 +24,14 @@ public class Membre {
         this.telephone = telephone;
         this.abonnement = abonnement;
     }
+    public Membre(String nom, String prenom, String adresse, String email, String telephone, Abonnement abonnement){
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.email = email;
+        this.telephone = telephone;
+        this.abonnement = abonnement;
+    }
     public Membre(){}
     /**
      * --------------------------  Getter  --------------------------

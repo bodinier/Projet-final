@@ -34,6 +34,6 @@ public enum Abonnement {
 
     public static final void main(String args[]){
         Abonnement abo = Abonnement.BASIC;
-        System.out.println(abo.toString());
+        System.out.println(abo.toString().toLowerCase());
     }
 }

@@ -40,6 +40,7 @@ public class MembreDao implements IMembreDao {
 	private static final String DELETE_QUERY = "DELETE FROM membre WHERE id = ?;";
 	private static final String COUNT_QUERY = "SELECT COUNT(id) AS count FROM membre;";
 	
+	@Override
 	public List<Membre> getList() throws DaoException{
 		List<Membre> membres = new ArrayList<>();
 		
@@ -56,7 +57,8 @@ public class MembreDao implements IMembreDao {
 		}
 		return membres;
 	}
-	
+
+	@Override
 	public Membre getById(int id) throws DaoException{
 		Membre membre = new Membre();
 		Connection connection = null;
@@ -100,6 +102,7 @@ public class MembreDao implements IMembreDao {
 		return membre;
 	}
 	
+	@Override
 	public int create(String nom, String prenom, String adresse, String email, String telephone) throws DaoException{
 		ResultSet res = null;
 		Connection connection = null;
@@ -143,6 +146,7 @@ public class MembreDao implements IMembreDao {
 		return id;
 	}
 	
+	@Override
 	public void update(Membre membre) throws DaoException{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -175,6 +179,7 @@ public class MembreDao implements IMembreDao {
 		}
 	}
 	
+	@Override
 	public void delete(int id) throws DaoException{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -202,6 +207,7 @@ public class MembreDao implements IMembreDao {
 		}
 	}
 	
+	@Override
 	public int count() throws DaoException{
 		int count = 0;
 		Connection connection = null;

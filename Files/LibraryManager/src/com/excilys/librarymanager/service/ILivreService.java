@@ -1,5 +1,4 @@
 package com.excilys.librarymanager.service;
-
 import java.util.List;
 
 import com.excilys.librarymanager.exception.ServiceException;
@@ -14,5 +13,4 @@ public interface ILivreService {
 	public void update(Livre livre) throws ServiceException;
 	public void delete(int id) throws ServiceException;
 	public int count() throws ServiceException;
-	
 }

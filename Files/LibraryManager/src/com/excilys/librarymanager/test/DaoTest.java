@@ -120,8 +120,8 @@ public class DaoTest {
 	}
 
 	public static void main(String args[]) throws DaoException {
-		//testLivre();
-		//testEmprunt();
+		testLivre();
+		testEmprunt();
 		testMembre();
 	}
 

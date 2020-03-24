@@ -1,5 +1,4 @@
 package com.excilys.librarymanager.service;
-
 import java.util.List;
 
 import com.excilys.librarymanager.exception.ServiceException;

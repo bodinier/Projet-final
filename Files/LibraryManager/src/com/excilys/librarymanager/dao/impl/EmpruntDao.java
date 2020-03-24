@@ -21,7 +21,8 @@ import com.excilys.librarymanager.persistence.ConnectionManager;
 
 public class EmpruntDao implements IEmpruntDao {
 
-	private static EmpruntDao instance;
+	private static EmpruntDao instance; // Le static fait que peut importe l'instance de EmpruntDao
+										// ils partageront toujours la même instance
 	private EmpruntDao() { }	
 	public static IEmpruntDao getInstance() {
 		if(instance == null) {
@@ -66,7 +67,7 @@ public class EmpruntDao implements IEmpruntDao {
 			"WHERE id = ?;";
 	private static final String COUNT_QUERY = "SELECT COUNT(id) AS count FROM emprunt;";
 
-	
+	@Override
 	public List<Emprunt> getList() throws DaoException{
 		List<Emprunt> emprunts = new ArrayList<>();
 		
@@ -86,13 +87,13 @@ public class EmpruntDao implements IEmpruntDao {
 				Emprunt f = new Emprunt(res.getInt("id"), l, m, dateEmprunt, dateRetour);
 				emprunts.add(f);
 			}
-			//System.out.println("GET: " + emprunts);
+
 		} catch (SQLException e) {
 			throw new DaoException("Probleme lors de la recuperation de la liste des emprunts", e);
 		}
 		return emprunts;
 	}
-	
+	@Override
 	public List<Emprunt> getListCurrent() throws DaoException{
 		List<Emprunt> emprunts = new ArrayList<>();
 		
@@ -119,7 +120,7 @@ public class EmpruntDao implements IEmpruntDao {
 		}
 		return emprunts;
 	}
-	
+	@Override
 	public List<Emprunt> getListCurrentByMembre(int idMembre) throws DaoException{
 		List<Emprunt> emprunts = new ArrayList<>();
 		Connection connection = null;
@@ -145,7 +146,6 @@ public class EmpruntDao implements IEmpruntDao {
 				Emprunt f = new Emprunt(res.getInt("id"), l, m, dateEmprunt, dateRetour);
 				emprunts.add(f);
 			}
-			//System.out.println("GET: " + emprunts);
 		} catch (SQLException e) {
 			throw new DaoException("Probleme lors de la recuperation de la liste des emprunts", e);
 		} finally {
@@ -167,7 +167,7 @@ public class EmpruntDao implements IEmpruntDao {
 		}
 		return emprunts;
 	}
-	
+	@Override
 	public List<Emprunt> getListCurrentByLivre(int idLivre) throws DaoException{
 		List<Emprunt> emprunts = new ArrayList<>();
 		Connection connection = null;
@@ -193,7 +193,6 @@ public class EmpruntDao implements IEmpruntDao {
 				Emprunt f = new Emprunt(res.getInt("id"), l, m, dateEmprunt, dateRetour);
 				emprunts.add(f);
 			}
-			//System.out.println("GET: " + emprunts);
 		} catch (SQLException e) {
 			throw new DaoException("Probleme lors de la recuperation de la liste des emprunts", e);
 		} finally {
@@ -215,7 +214,7 @@ public class EmpruntDao implements IEmpruntDao {
 		}
 		return emprunts;
 	}
-	
+	@Override
 	public Emprunt getById(int id) throws DaoException{
 		Emprunt emprunt = new Emprunt();
 		Connection connection = null;
@@ -244,7 +243,6 @@ public class EmpruntDao implements IEmpruntDao {
 				emprunt.setDateEmprunt(dateEmprunt);
 				emprunt.setDateRetour(dateRetour);
 			}
-			//System.out.println("GET: " + emprunt);
 		} catch (SQLException e) {
 			throw new DaoException("Probleme lors de la recuperation de la liste des emprunts", e);
 		} finally {
@@ -266,7 +264,7 @@ public class EmpruntDao implements IEmpruntDao {
 		}
 		return emprunt;
 	}
-	
+	@Override
 	public void create(int idMembre, int idLivre, LocalDate dateEmprunt) throws DaoException{
 		ResultSet res = null;
 		Connection connection = null;
@@ -278,24 +276,20 @@ public class EmpruntDao implements IEmpruntDao {
 			preparedStatement.setInt(1, idMembre);
 			preparedStatement.setInt(2, idLivre);
 			preparedStatement.setString(3, dateEmprunt.toString());
-			int daysToAdd = 1; //a modifier en fonction de l'abonnement je pense
-			LocalDate dateRetour = dateEmprunt.plusDays(daysToAdd);
-			preparedStatement.setString(4, dateRetour.toString());
+			preparedStatement.setString(4, null);
 			preparedStatement.executeUpdate();
 			res = preparedStatement.getGeneratedKeys();
 			if(res.next()){
 				id = res.getInt(1);				
 			}
-			
-			//System.out.println("CREATE emprunt:\n\tIdMembre: " + idMembre + "\n\tIdLivre: " + idLivre + "\n\tDate Emprunt: " + dateEmprunt + "\n\tDate Retour: " + dateRetour);
 		} catch (SQLException e) {
 			throw new DaoException("Probleme lors de la creation de l'emprunt", e);
 		} finally {
-			/*try {
+			try {
 				res.close();
 			} catch (Exception e) {
 				e.printStackTrace();
-			}*/
+			}
 			try {
 				preparedStatement.close();
 			} catch (Exception e) {
@@ -308,7 +302,7 @@ public class EmpruntDao implements IEmpruntDao {
 			}
 		}
 	}
-	
+	@Override
 	public void update(Emprunt emprunt) throws DaoException{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -322,7 +316,6 @@ public class EmpruntDao implements IEmpruntDao {
 			preparedStatement.setInt(5, emprunt.getId());
 			preparedStatement.executeUpdate();
 
-			//System.out.println("UPDATE: " + emprunt);
 		} catch (SQLException e) {
 			throw new DaoException("Probleme lors de la mise a jour de l'emprunt: " + emprunt, e);
 		} finally {
@@ -338,7 +331,7 @@ public class EmpruntDao implements IEmpruntDao {
 			}
 		}
 	}
-	
+	@Override
 	public int count() throws DaoException{
 		int count = 0;
 		Connection connection = null;
@@ -351,7 +344,6 @@ public class EmpruntDao implements IEmpruntDao {
 			if(res.next()) {
 				count = res.getInt("count");
 			}
-			//System.out.println("GET: " + count);
 		} catch (SQLException e) {
 			throw new DaoException("Probleme lors du comptage des emprunts", e);
 		}

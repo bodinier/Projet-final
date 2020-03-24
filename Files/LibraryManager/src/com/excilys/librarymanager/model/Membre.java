@@ -1,5 +1,7 @@
 package com.excilys.librarymanager.model;
 
+import com.excilys.librarymanager.exception.ServiceException;
+
 public class Membre {
     /**
      * --------------------------   Attributs d'un membre   --------------------------
@@ -89,5 +91,30 @@ public class Membre {
         String str = "ID " + id + " / prenom : " + prenom + " / nom : " + nom + " / Adresse : " + adresse 
             + " / email : " + email + " / telephone : " + telephone + " / Abonnement = " + abonnement;
         return str;
+    }
+
+    /**
+     * 
+     * @param nbBooks
+     * @return true si c'est possible d'emprunter un livre de plus
+     * @throws ServiceException
+     */
+    public boolean isEmpruntPossible(int nbBooks) throws ServiceException{
+        boolean isPossible = false;
+        switch (this.abonnement){
+            case BASIC :
+                if (nbBooks < 2)
+                    isPossible = true;
+                    break;
+            case PREMIUM :
+                if (nbBooks < 5)
+                    isPossible = true;
+                    break;
+            case VIP : 
+                if (nbBooks < 20)
+                    isPossible = true;
+                    break;
+        }
+        return isPossible;
     }
 }

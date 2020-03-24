@@ -30,7 +30,7 @@ public class LivreDao implements ILivreDao {
 	private static final String UPDATE_QUERY = "UPDATE livre SET titre = ?, auteur = ?, isbn = ? WHERE id = ?;";
 	private static final String DELETE_QUERY = "DELETE FROM livre WHERE id = ?;";
 	private static final String COUNT_QUERY = "SELECT COUNT(id) AS count FROM livre;";
-	
+	@Override
 	public List<Livre> getList() throws DaoException{
 		List<Livre> livres = new ArrayList<>();
 		
@@ -48,7 +48,7 @@ public class LivreDao implements ILivreDao {
 		}
 		return livres;
 	}
-	
+	@Override
 	public Livre getById(int id) throws DaoException{
 		Livre livre = new Livre();
 		Connection connection = null;
@@ -89,7 +89,7 @@ public class LivreDao implements ILivreDao {
 		}
 		return livre;
 	}
-	
+	@Override
 	public int create(String titre, String auteur, String isbn) throws DaoException{
 		ResultSet res = null;
 		Connection connection = null;
@@ -130,7 +130,7 @@ public class LivreDao implements ILivreDao {
 		}
 		return id;
 	}
-	
+	@Override
 	public void update(Livre livre) throws DaoException{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -159,7 +159,7 @@ public class LivreDao implements ILivreDao {
 			}
 		}
 	}
-	
+	@Override
 	public void delete(int id) throws DaoException{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -186,7 +186,7 @@ public class LivreDao implements ILivreDao {
 			}
 		}
 	}
-	
+	@Override
 	public int count() throws DaoException{
 		int count = 0;
 		Connection connection = null;

@@ -33,14 +33,26 @@
                 </thead>
                 <tbody id="results">
                 
-                    <tr>
-                        <td>Titre du livre, <em>de Nom de l'auteur</em></td>
-                        <td>Prénom et nom du membre emprunteur</td>
-                        <td>Date de l'emprunt</td>
-                        <td>
-                            <a href="emprunt_return?id=idDeLEmprunt"><ion-icon class="table-item" name="log-in"></a>
-                        </td>
-                    </tr>
+                  <c:if test="${! empty emprunts }">
+        		 	<c:forEach items="${emprunts}" var="e">
+        		 	
+	        		 	<tr>
+	                        <td><c:out value="${e.get_Livre().get_titre()}" />, <em>de <c:out value="${e.get_Livre().get_auteur()}" /></em></td>
+	                        <td><c:out value="${e.get_Membre().get_prenom()}" />  <c:out value="${e.get_Membre().get_nom()}" /> </td>
+	                        <td><c:out value="${e.get_LocalDateE()}" /></td>
+	                        <td>
+	                       		 <c:if test="${e.get_LocalDateR() != null}"> 
+	                       		 	<c:out value="${e.get_LocalDateR()}" />
+								 </c:if>
+								 <c:if test="${e.get_LocalDateR() == null}"> 
+									<a href="emprunt_return?id=${e.get_ID()}"><ion-icon class="table-item" name="log-in"></a>
+								 
+								 </c:if>
+	                        </td>
+	                    </tr>
+        		 	
+					</c:forEach>
+	              </c:if>
 
 					 <!-- TODO : parcourir la liste des emprunts en cours et les afficher selon la structure d'exemple ci-dessus -->
 					 <!-- TODO : dans le champ "retour", afficher la date de retour si elle existe, et un lien vers la page de retour si la date est vide (comme dans l'exemple ci-dessus) -->

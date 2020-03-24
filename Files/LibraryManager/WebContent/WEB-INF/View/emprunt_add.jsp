@@ -1,4 +1,5 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,22 +22,38 @@
       </div>
       <div class="row">
       <div class="container">
-        <h5>Sélectionnez le livre et le membre emprunteur</h5>
+        <h5>Sï¿½lectionnez le livre et le membre emprunteur</h5>
         <div class="row">
 	      <form action="/LibraryManager/emprunt_add" method="post" class="col s12">
 	        <div class="row">
 	          <div class="input-field col s6">
 	            <select id="idLivre" name="idLivre" class="browser-default">
 	              <option value="" disabled selected>-- Livres --</option>
-	              <!-- TODO : parcourir la liste des livres disponibles et afficher autant d'options que nécessaire, sur la base de l'exemple ci-dessous -->
-                  <option value="idDuLivre">"Titre du livre", de Nom de l'auteur</option>
+	              
+	              <c:if test="${! empty livres }">
+        		 	<c:forEach items="${livres}" var="l">
+						<option value="${l.get_ID()}">"<c:out value="${l.get_titre()}"/>, de<c:out value="${l.get_auteur()}" /></option>
+					</c:forEach>
+	              </c:if>
+	              
+	              
+	              <!-- TODO : parcourir la liste des livres disponibles et afficher autant d'options que necessaire, sur la base de l'exemple ci-dessous -->
+               
 	            </select>
 	          </div>
 	          <div class="input-field col s6">
 	            <select id="idMembre" name="idMembre" class="browser-default">
 	              <option value="" disabled selected>-- Membres --</option>
-	              <!-- TODO : parcourir la liste des membres pouvant emprunter et afficher autant d'options que nécessaire, sur la base de l'exemple ci-dessous -->
-                  <option value="idDuMembre">Prénom et nom du membre</option>
+	              
+	              <c:if test="${! empty membres }">
+        		 	<c:forEach items="${membres}" var="m">
+						<option value="${m.get_ID()}"> <c:out value="${m.get_prenom()}" /> <c:out value="${m.get_nom()}" /></option>
+					</c:forEach>
+	              </c:if>
+	             
+				
+	              <!-- TODO : parcourir la liste des membres pouvant emprunter et afficher autant d'options que necessaire, sur la base de l'exemple ci-dessous -->
+                  
 	            </select>
 	          </div>
 	        </div>

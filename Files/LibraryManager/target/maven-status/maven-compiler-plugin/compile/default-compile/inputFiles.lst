@@ -1,19 +1,35 @@
-/Users/Alex2/Desktop/Copie git Kevin/IN205_Projet_final/LibraryManager/src/com/excilys/librarymanager/model/Emprunt.java
-/Users/Alex2/Desktop/Copie git Kevin/IN205_Projet_final/LibraryManager/src/com/excilys/librarymanager/dao/impl/LivreDao.java
-/Users/Alex2/Desktop/Copie git Kevin/IN205_Projet_final/LibraryManager/src/com/excilys/librarymanager/model/Membre.java
-/Users/Alex2/Desktop/Copie git Kevin/IN205_Projet_final/LibraryManager/src/com/excilys/librarymanager/exception/ServiceException.java
-/Users/Alex2/Desktop/Copie git Kevin/IN205_Projet_final/LibraryManager/src/com/excilys/librarymanager/dao/impl/MembreDao.java
-/Users/Alex2/Desktop/Copie git Kevin/IN205_Projet_final/LibraryManager/src/com/excilys/librarymanager/service/IEmpruntService.java
-/Users/Alex2/Desktop/Copie git Kevin/IN205_Projet_final/LibraryManager/src/com/excilys/librarymanager/exception/DaoException.java
-/Users/Alex2/Desktop/Copie git Kevin/IN205_Projet_final/LibraryManager/src/com/excilys/librarymanager/dao/IEmpruntDao.java
-/Users/Alex2/Desktop/Copie git Kevin/IN205_Projet_final/LibraryManager/src/com/excilys/librarymanager/model/Livre.java
-/Users/Alex2/Desktop/Copie git Kevin/IN205_Projet_final/LibraryManager/src/com/excilys/librarymanager/dao/ILivreDao.java
-/Users/Alex2/Desktop/Copie git Kevin/IN205_Projet_final/LibraryManager/src/com/excilys/librarymanager/persistence/ConnectionManager.java
-/Users/Alex2/Desktop/Copie git Kevin/IN205_Projet_final/LibraryManager/src/com/excilys/librarymanager/model/Abonnement.java
-/Users/Alex2/Desktop/Copie git Kevin/IN205_Projet_final/LibraryManager/src/com/excilys/librarymanager/test/ModelTest.java
-/Users/Alex2/Desktop/Copie git Kevin/IN205_Projet_final/LibraryManager/src/com/excilys/librarymanager/dao/IMembreDao.java
-/Users/Alex2/Desktop/Copie git Kevin/IN205_Projet_final/LibraryManager/src/com/excilys/librarymanager/dao/impl/EmpruntDao.java
-/Users/Alex2/Desktop/Copie git Kevin/IN205_Projet_final/LibraryManager/src/com/excilys/librarymanager/service/IMembreService.java
-/Users/Alex2/Desktop/Copie git Kevin/IN205_Projet_final/LibraryManager/src/com/excilys/librarymanager/service/ILivreService.java
-/Users/Alex2/Desktop/Copie git Kevin/IN205_Projet_final/LibraryManager/src/com/excilys/librarymanager/test/DaoTest.java
-/Users/Alex2/Desktop/Copie git Kevin/IN205_Projet_final/LibraryManager/src/com/excilys/librarymanager/utils/FillDatabase.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/servlet/MembreAddServlet.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/service/impl/EmpruntService.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/dao/impl/MembreDao.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/dao/impl/LivreDao.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/servlet/EmpruntReturnServlet.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/servlet/LivreDeleteServlet.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/model/Abonnement.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/servlet/LivreListServlet.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/servlet/EmpruntListServlet.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/dao/impl/EmpruntDao.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/servlet/LivreAddServlet.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/service/impl/LivreService.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/persistence/ConnectionManager.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/model/Emprunt.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/service/IMembreService.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/servlet/MembreDetailsServlet.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/service/impl/MembreService.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/dao/ILivreDao.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/servlet/LivreDetailsServlet.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/service/ILivreService.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/utils/FillDatabase.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/exception/ServiceException.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/servlet/MembreListServlet.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/servlet/EmpruntAddServlet.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/exception/DaoException.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/test/ModelTest.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/test/DaoTest.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/dao/IMembreDao.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/servlet/DashboardServlet.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/servlet/MembreDeleteServlet.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/dao/IEmpruntDao.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/test/ServiceTest.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/model/Membre.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/service/IEmpruntService.java
+/Users/Alex2/Desktop/Projet-final/Files/LibraryManager/src/com/excilys/librarymanager/model/Livre.java

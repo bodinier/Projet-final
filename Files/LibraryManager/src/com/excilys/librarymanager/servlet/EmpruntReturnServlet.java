@@ -40,7 +40,7 @@ public class EmpruntReturnServlet extends HttpServlet {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/emprunt_return.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/emprunt_return.jsp");
 		request.setAttribute("emprunts", emprunts);
 
 		dispatcher.forward(request, response);

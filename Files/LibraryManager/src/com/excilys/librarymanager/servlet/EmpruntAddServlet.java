@@ -42,7 +42,7 @@ public class EmpruntAddServlet extends HttpServlet {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/emprunt_add.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/emprunt_add.jsp");
 		request.setAttribute("membres", membres);
 		request.setAttribute("livres", livres);
 		dispatcher.forward(request, response);

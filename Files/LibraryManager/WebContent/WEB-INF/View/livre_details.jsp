@@ -21,7 +21,7 @@
       </div>
       <div class="row">
       <div class="container">
-      <h5>Dï¿½tails du livre nï¿½${livre.get_ID()}</h5>
+      <h5>Détails du livre n°${livre.get_ID()}</h5>
         <div class="row">
 	      <form action="/LibraryManager/livre_details?id=${livre.get_ID()}" method="post" class="col s12"> <!-- TODO : remplacer idDuLivre par l'id du livre -->
 	        <div class="row">

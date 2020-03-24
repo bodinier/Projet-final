@@ -21,22 +21,22 @@
       </div>
       <div class="row">
       <div class="container">
-      <h5>Dï¿½tails du livre nï¿½${livre.get_ID()}</h5>
+      <h5>Détails du livre n°${livre.id}</h5>
         <div class="row">
-	      <form action="/LibraryManager/livre_details?id=${livre.get_ID()}" method="post" class="col s12"> <!-- TODO : remplacer idDuLivre par l'id du livre -->
+	      <form action="/LibraryManager/livre_details?id=idDuLivre" method="post" class="col s12"> <!-- TODO : remplacer idDuLivre par l'id du livre -->
 	        <div class="row">
 	          <div class="input-field col s12">
-	            <input id="titre" type="text" value="${livre.get_titre()}" name="titre"> <!-- TODO : remplacer titreDuLivre par le titre du livre -->
+	            <input id="titre" type="text" value="titreDuLivre" name="titre"> <!-- TODO : remplacer titreDuLivre par le titre du livre -->
 	            <label for="titre">Titre</label>
 	          </div>
 	        </div>
 	        <div class="row">
 	          <div class="input-field col s6">
-	            <input id="auteur" type="text" value="${livre.get_auteur()}" name="auteur"> <!-- TODO : remplacer auteurDuLivre par l'auteur du livre -->
+	            <input id="auteur" type="text" value="auteurDuLivre" name="auteur"> <!-- TODO : remplacer auteurDuLivre par l'auteur du livre -->
 	            <label for="auteur">Auteur</label>
 	          </div>
 	          <div class="input-field col s6">
-	            <input id="isbn" type="text" value="${livre.get_isbn()}" name="isbn"> <!-- TODO : remplacer isbnDuLivre par l'isbn du livre -->
+	            <input id="isbn" type="text" value="isbnDuLivre" name="isbn"> <!-- TODO : remplacer isbnDuLivre par l'isbn du livre -->
 	            <label for="isbn">ISBN 13</label>
 	          </div>
 	        </div>
@@ -47,7 +47,7 @@
 	      </form>
 	      
 	      <form action="/LibraryManager/livre_delete" method="get" class="col s12">
-	        <input type="hidden" value="${livre.get_ID()}" name="id"> <!-- TODO : remplacer idDuLivre par l'id du livre -->
+	        <input type="hidden" value="idDuLivre" name="id"> <!-- TODO : remplacer idDuLivre par l'id du livre -->
 	        <div class="row center">
 	          <button class="btn waves-effect waves-light red" type="submit">Supprimer le livre
 	            <i class="material-icons right">delete</i>
@@ -66,21 +66,14 @@
                 </tr>
               </thead>
               <tbody id="results">
-				  <c:if test="${! empty emprunts }">
-        		 	<c:forEach items="${emprunts}" var="e">
-						
-						<tr>
-		                  <td><c:out value="${e.get_Membre().get_prenom()}" /> <c:out value="${e.get_Membre().get_nom()}" /> </td>
-		                  <td><c:out value="${e.get_LocalDateE()}" /></td>
-		                  <td>
-		                    <a href="emprunt_return?id=${e.get_ID()}"><ion-icon class="table-item" name="log-in"></a>
-		                  </td>
-		                </tr>
-						
-					</c:forEach>
-	              </c:if>
-	             
-                
+
+                <tr>
+                  <td>Prénom et nom du membre emprunteur</td>
+                  <td>Date de l'emprunt</td>
+                  <td>
+                    <a href="emprunt_return?id=idDeLEmprunt"><ion-icon class="table-item" name="log-in"></a>
+                  </td>
+                </tr>
 
 				<!-- TODO : parcourir la liste des emprunts en cours pour ce livre et les afficher selon la structure d'exemple ci-dessus -->
               </tbody>

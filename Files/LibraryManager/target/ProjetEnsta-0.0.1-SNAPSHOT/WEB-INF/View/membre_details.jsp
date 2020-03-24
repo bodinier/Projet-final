@@ -21,22 +21,22 @@
       </div>
       <div class="row">
       <div class="container">
-      <h5>Dï¿½tails du membre nï¿½${membre.get_ID()}</h5> <!-- TODO : remplacer 007 par l'id du membre -->
+      <h5>Détails du membre n°007</h5> <!-- TODO : remplacer 007 par l'id du membre -->
         <div class="row">
-	      <form action="/LibraryManager/membre_details?id=${membre.get_ID()}" method="post" class="col s12"> <!-- TODO : remplacer idDuMembre par l'id du membre -->
+	      <form action="/LibraryManager/membre_details?id=idDuMembre" method="post" class="col s12"> <!-- TODO : remplacer idDuMembre par l'id du membre -->
 	        <div class="row">
 	          <div class="input-field col s4">
-	            <input id="nom" type="text" value="${membre.get_nom()}" name="nom"> <!-- TODO : remplacer nomDuMembre par le nom du membre -->
+	            <input id="nom" type="text" value="nomDuMembre" name="nom"> <!-- TODO : remplacer nomDuMembre par le nom du membre -->
 	            <label for="nom">Nom</label>
 	          </div>
 	          <div class="input-field col s4">
-	            <input id="prenom" type="text" value="${membre.get_prenom()}" name="prenom"> <!-- TODO : remplacer prenomDuMembre par le prï¿½nom du membre -->
-	            <label for="prenom">Prï¿½nom</label>
+	            <input id="prenom" type="text" value="prenomDuMembre" name="prenom"> <!-- TODO : remplacer prenomDuMembre par le prénom du membre -->
+	            <label for="prenom">Prénom</label>
 	          </div>
 	          <div class="input-field col s4">
 	            <select name="abonnement" class="browser-default">
-	              <!-- TODO : faire en sorte que l'option correspondant a l'abonnement du membre soit selectionnee par defaut -->
-	              <!-- Pour cela, vous devez rajouter l'attribut selecter sur la balise <option> concernee -->
+	              <!-- TODO : faire en sorte que l'option correspondant à l'abonnement du membre soit sélectionnée par défaut -->
+	              <!-- Pour cela, vous devez rajouter l'attribut selecter sur la balise <option> concernée -->
 	              <option value="BASIC" ${(membre.abonnement == "BASIC") ? " selected" : ""}>Abonnement BASIC</option>
 	              <option value="PREMIUM" ${(membre.abonnement == "PREMIUM") ? " selected" : ""}>Abonnement PREMIUM</option>
 	              <option value="VIP" ${(membre.abonnement == "VIP") ? " selected" : ""}>Abonnement VIP</option>
@@ -45,18 +45,18 @@
 	        </div>
 	        <div class="row">
 	          <div class="input-field col s12">
-	            <input id="adresse" type="text" value="${membre.get_adresse()}" name="adresse"> <!-- TODO : remplacer adresseDuMembre par l'adresse du membre -->
+	            <input id="adresse" type="text" value="adresseDuMembre" name="adresse"> <!-- TODO : remplacer adresseDuMembre par l'adresse du membre -->
 	            <label for="adresse">Adresse</label>
 	          </div>
 	        </div>
 	        <div class="row">
 	          <div class="input-field col s6">
-	            <input id="email" type="email" value="${membre.get_email()}" name="email"> <!-- TODO : remplacer emailDuMembre par l'email du membre -->
+	            <input id="email" type="email" value="emailDuMembre" name="email"> <!-- TODO : remplacer emailDuMembre par l'email du membre -->
 	            <label for="email">E-mail</label>
 	          </div>
 	          <div class="input-field col s6">
-	            <input id="telephone" type="tel" value="${membre.get_telephone()}" name="telephone"> <!-- TODO : remplacer telephoneDuMembre par le telephone du membre -->
-	            <label for="telephone">Tï¿½lï¿½phone</label>
+	            <input id="telephone" type="tel" value="telephoneDuMembre" name="telephone"> <!-- TODO : remplacer telephoneDuMembre par le téléphone du membre -->
+	            <label for="telephone">Téléphone</label>
 	          </div>
 	        </div>
 	        <div class="row center">
@@ -66,7 +66,7 @@
 	      </form>
 	      
 	      <form action="/LibraryManager/membre_delete" method="get" class="col s12">
-	        <input type="hidden" value="${membre.get_ID()}" name="id"> <!-- TODO : remplacer idDuMembre par l'id du membre -->
+	        <input type="hidden" value="idDuMembre" name="id"> <!-- TODO : remplacer idDuMembre par l'id du membre -->
 	        <div class="row center">
 	          <button class="btn waves-effect waves-light red" type="submit">Supprimer le membre
 	            <i class="material-icons right">delete</i>
@@ -86,27 +86,15 @@
               </thead>
               <tbody id="results">
 
-				<c:if test="${! empty emprunts }">
-        		 	<c:forEach items="${emprunts}" var="e">
-						
-						<tr>
-		                  <td><c:out value="${e.get_Livre().get_titre()}" />, de<c:out value="${e.get_Livre().get_auteur()}" /> </td>
-		                  <td><c:out value="${e.get_LocalDateE()}" /></td>
-		                  <td>
-		                    <a href="emprunt_return?id=${e.get_ID()}"><ion-icon class="table-item" name="log-in"></a>
-		                  </td>
-		                </tr>
-						
-					</c:forEach>
-	              </c:if>
-	              
-                
-                
-                
-                
-                
-                
-                
+                <c:forEach var="emprunt" items="${emprunts}">
+                <tr>
+                  <td>Prénom et nom du membre emprunteur</td>
+                  <td>Date de l'emprunt</td>
+                  <td>
+                    <a href="emprunt_return?id=idDeLEmprunt"><ion-icon class="table-item" name="log-in"></a>
+                  </td>
+                </tr>
+                </c:forEach>
 
 				<!-- TODO : parcourir la liste des emprunts en cours pour ce membre et les afficher selon la structure d'exemple ci-dessus -->
               </tbody>

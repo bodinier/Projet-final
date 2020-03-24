@@ -1,2 +1,0 @@
-0:0:0:0:0:0:0:1 - - [24/Mar/2020:20:50:32 +0100] "GET /ProjetEnsta HTTP/1.1" 302 - http-bio-8080-exec-1 0
-0:0:0:0:0:0:0:1 - - [24/Mar/2020:20:50:32 +0100] "GET /ProjetEnsta/ HTTP/1.1" 404 975 http-bio-8080-exec-2 35

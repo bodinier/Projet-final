@@ -45,7 +45,7 @@ public class MembreListServlet extends HttpServlet {
 		
 		request.setAttribute("membres", membres);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/membre_list.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/membre_list.jsp");
 		dispatcher.forward(request, response);
 	}
 

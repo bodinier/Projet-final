@@ -49,8 +49,8 @@
 	              
 	              
 	              
-                  <!-- TODO : parcourir la liste des emprunts non rendus et afficher autant d'options que necessaire, sur la base de l'exemple ci-dessous -->
-                  <!-- TODO : si l'attribut id existe, l'option correspondante devra etre selectionnee par defaut (ajouter l'attribut selected dans la balise <option>) -->
+                  <!-- TODO : parcourir la liste des emprunts non rendus et afficher autant d'options que n�cessaire, sur la base de l'exemple ci-dessous -->
+                  <!-- TODO : si l'attribut id existe, l'option correspondante devra �tre s�lectionn�e par d�faut (ajouter l'attribut selected dans la balise <option>) -->
 	            </select>
 	          </div>
 	        </div>

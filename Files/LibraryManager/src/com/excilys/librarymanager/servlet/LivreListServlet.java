@@ -45,7 +45,7 @@ public class LivreListServlet extends HttpServlet {
 		
 		request.setAttribute("livres", livres);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/livre_list.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/livre_list.jsp");
 		dispatcher.forward(request, response);
 	}
 

@@ -21,7 +21,7 @@
       </div>
       <div class="row">
       <div class="container">
-      <h5>Dï¿½tails du membre nï¿½${membre.get_ID()}</h5> <!-- TODO : remplacer 007 par l'id du membre -->
+      <h5>Détails du membre n°${membre.get_ID()}</h5> <!-- TODO : remplacer 007 par l'id du membre -->
         <div class="row">
 	      <form action="/LibraryManager/membre_details?id=${membre.get_ID()}" method="post" class="col s12"> <!-- TODO : remplacer idDuMembre par l'id du membre -->
 	        <div class="row">
@@ -30,13 +30,13 @@
 	            <label for="nom">Nom</label>
 	          </div>
 	          <div class="input-field col s4">
-	            <input id="prenom" type="text" value="${membre.get_prenom()}" name="prenom"> <!-- TODO : remplacer prenomDuMembre par le prï¿½nom du membre -->
-	            <label for="prenom">Prï¿½nom</label>
+	            <input id="prenom" type="text" value="${membre.get_prenom()}" name="prenom"> <!-- TODO : remplacer prenomDuMembre par le prénom du membre -->
+	            <label for="prenom">Prénom</label>
 	          </div>
 	          <div class="input-field col s4">
 	            <select name="abonnement" class="browser-default">
-	              <!-- TODO : faire en sorte que l'option correspondant a l'abonnement du membre soit selectionnee par defaut -->
-	              <!-- Pour cela, vous devez rajouter l'attribut selecter sur la balise <option> concernee -->
+	              <!-- TODO : faire en sorte que l'option correspondant à l'abonnement du membre soit sélectionnée par défaut -->
+	              <!-- Pour cela, vous devez rajouter l'attribut selecter sur la balise <option> concernée -->
 	              <option value="BASIC" ${(membre.abonnement == "BASIC") ? " selected" : ""}>Abonnement BASIC</option>
 	              <option value="PREMIUM" ${(membre.abonnement == "PREMIUM") ? " selected" : ""}>Abonnement PREMIUM</option>
 	              <option value="VIP" ${(membre.abonnement == "VIP") ? " selected" : ""}>Abonnement VIP</option>
@@ -55,8 +55,8 @@
 	            <label for="email">E-mail</label>
 	          </div>
 	          <div class="input-field col s6">
-	            <input id="telephone" type="tel" value="${membre.get_telephone()}" name="telephone"> <!-- TODO : remplacer telephoneDuMembre par le telephone du membre -->
-	            <label for="telephone">Tï¿½lï¿½phone</label>
+	            <input id="telephone" type="tel" value="${membre.get_telephone()}" name="telephone"> <!-- TODO : remplacer telephoneDuMembre par le téléphone du membre -->
+	            <label for="telephone">Téléphone</label>
 	          </div>
 	        </div>
 	        <div class="row center">

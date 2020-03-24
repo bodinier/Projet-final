@@ -34,26 +34,26 @@ public class DashboardServlet extends HttpServlet {
 		IMembreService membreservice = MembreService.getInstance();
 		ILivreService livreservice = LivreService.getInstance();
 		IEmpruntService empruntservice = EmpruntService.getInstance();
-		int nb_membres = -1;
-		int nb_livres = -1;
-		int nb_emprunts = -1;
+		int nbMembres = -1;
+		int nbLivres = -1;
+		int nbEmprunts = -1;
 		List<Emprunt> emprunts = new ArrayList<Emprunt>();
 		try {
-			nb_membres = membreservice.count();
-			nb_livres = livreservice.count();
-			nb_emprunts = empruntservice.count();
+			nbMembres = membreservice.count();
+			nbLivres = livreservice.count();
+			nbEmprunts = empruntservice.count();
 			emprunts = empruntservice.getListCurrent();
 			
 		} catch (ServiceException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-		request.setAttribute("nb_membres", nb_membres);
-		request.setAttribute("nb_livres", nb_livres);
-		request.setAttribute("nb_emprunts", nb_emprunts);
+		request.setAttribute("nb_membres", nbMembres);
+		request.setAttribute("nb_livres", nbLivres);
+		request.setAttribute("nb_emprunts", nbEmprunts);
 		request.setAttribute("emprunts", emprunts);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/dashboard.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/dashboard.jsp");
 		dispatcher.forward(request, response);
 	}
 

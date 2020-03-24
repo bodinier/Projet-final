@@ -1,6 +1,4 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +23,7 @@
         <div class="col l4 s6">
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3> <c:out value="${nb_membres}" default=" " /> </h3> <!-- TODO : afficher le nombre de membres a la place de 12 -->
+              <h3>${nbMembres}</h3> <!-- TODO : afficher le nombre de membres à la place de 12 -->
               <p>Membres</p>
             </div>
             <div class="icon">
@@ -37,7 +35,7 @@
         <div class="col l4 s6">
           <div class="small-box bg-green">
             <div class="inner">
-              <h3><c:out value="${nb_livres}" default=" " /></h3> <!-- TODO : afficher le nombre de livres a la place de 27 -->
+              <h3>${nbLivres}</h3> <!-- TODO : afficher le nombre de livres à la place de 27 -->
               <p>Livres</p>
             </div>
             <div class="icon">
@@ -49,7 +47,7 @@
         <div class="col l4 s6">
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3><c:out value="${nb_emprunts}" default=" " /></h3> <!-- TODO : afficher le nombre d'emprunts a la place de 1515 -->
+              <h3>${nbEmprunts}</h3> <!-- TODO : afficher le nombre d'emprunts à la place de 1515 -->
               <p>Emprunts</p>
             </div>
             <div class="icon">
@@ -71,21 +69,19 @@
                     </tr>
                 </thead>
                 <tbody id="results">
-                 <c:if test="${! empty emprunts }">
-        		 	<c:forEach items="${emprunts}" var="e">
-        
-						<tr>
-							<td><c:out value="${e.get_Livre().get_titre()" />, <em>de <c:out value="${e.get_Livre().get_auteur()}" /></em></td>
-							<td><c:out value="${e.get_Membre().get_prenom()" /><em><c:out value="${e.get_Membre().get_nom()" /></em></td>
-							<td><c:out value="${e.get_LocalDateE()" /></td>
-							<td>
+                	<c:forEach items="${listeEmprunts}" var="item">
+                    <tr>
+                        <td>${item.livre.titre}, <em>de ${item.livre.auteur}</em></td>
+                        <td>${item.membre.nom} ${item.membre.prenom}</td>
+                        <td>${item.dateEmprunt}</td>
+                        <td>
                             <a href="emprunt_return?id=idDeLEmprunt"><ion-icon class="table-item" name="log-in"></a>
-                        	</td>
-						</tr>
-			
-                      </c:forEach>
-                </c:if>
+                        </td>
+                    </tr>
+                    
                      <!-- TODO : parcourir la liste des emprunts en cours et les afficher selon la structure d'exemple ci-dessus -->
+                     
+					 </c:forEach>
                 </tbody>
             </table>
           </div>

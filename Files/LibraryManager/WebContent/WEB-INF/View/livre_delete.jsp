@@ -21,9 +21,9 @@
       </div>
       <div class="row">
       <div class="container">
-      <h5>Suppression du livre nï¿½${livre.get_ID()}</h5> <!-- TODO : afficher l'id du livre au lieu de 42 -->
+      <h5>Suppression du livre n°${livre.get_ID()}</h5> <!-- TODO : afficher l'id du livre au lieu de 42 -->
         <div class="row">
-          <p>ï¿½tes-vous sï¿½r de vouloir supprimer le livre ${livre.get_titre()} /> de ${livre.get_auteur()} (code ${livre.get_isbn()}) ?</p> <!-- TODO : completer les trois informations ci-contre -->
+          <p>Êtes-vous sûr de vouloir supprimer le livre ${livre.get_titre()} /> de ${livre.get_auteur()} (code ${livre.get_isbn()}) ?</p> <!-- TODO : compléter les trois informations ci-contre -->
 	      <form action="/LibraryManager/livre_delete" method="post" class="col s12">
             <input type="hidden" value="${livre.get_ID()}" name="id"> <!-- TODO : remplacer idDuLivre par l'id du livre -->
 	        <div class="row center">

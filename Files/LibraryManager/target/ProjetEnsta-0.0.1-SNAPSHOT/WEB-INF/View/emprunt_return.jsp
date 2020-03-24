@@ -21,36 +21,16 @@
       </div>
       <div class="row">
       <div class="container">
-        <h5>Sï¿½lectionnez le livre ï¿½ retourner</h5>
+        <h5>Sélectionnez le livre à retourner</h5>
         <div class="row">
 	      <form action="/LibraryManager/emprunt_return" method="post" class="col s12">
 	        <div class="row">
 	          <div class="input-field col s12">
 	            <select id="id" name="id" class="browser-default">
 	              <option value="" disabled selected>---</option>
-	              
-	              <c:if test="${! empty emprunts }">
-        		 	<c:forEach items="${emprunts}" var="e">
-        		 	
-        		 	
-        		 		
-        		 		
-        		 		 <c:if test="${e.get_ID() != null}"> 
-	                       		 	<option value="${e.get_ID()}" selected>"<c:out value="${e.get_Livre().get_titre()}" />", empruntï¿½ par <c:out value="${e.get_Membre().get_prenom()}" /> <c:out value="${e.get_Membre().get_nom()}" /></option>
-						 </c:if>
-						 <c:if test="${e.get_ID() == null}"> 
-									<option value="${e.get_ID()}">"<c:out value="${e.get_Livre().get_titre()}" />", empruntï¿½ par <c:out value="${e.get_Membre().get_prenom()}" /> <c:out value="${e.get_Membre().get_nom()}" /></option>						 
-						 </c:if>
-       		 	
-        		 	
-					</c:forEach>
-	              </c:if>
-	              
-	              
-	              
-	              
-                  <!-- TODO : parcourir la liste des emprunts non rendus et afficher autant d'options que necessaire, sur la base de l'exemple ci-dessous -->
-                  <!-- TODO : si l'attribut id existe, l'option correspondante devra etre selectionnee par defaut (ajouter l'attribut selected dans la balise <option>) -->
+                  <!-- TODO : parcourir la liste des emprunts non rendus et afficher autant d'options que nécessaire, sur la base de l'exemple ci-dessous -->
+                  <!-- TODO : si l'attribut id existe, l'option correspondante devra être sélectionnée par défaut (ajouter l'attribut selected dans la balise <option>) -->
+                  <option value="idDeLEmprunt">"Titre du livre", emprunté par Prénom et nom du membre emprunteur</option>
 	            </select>
 	          </div>
 	        </div>

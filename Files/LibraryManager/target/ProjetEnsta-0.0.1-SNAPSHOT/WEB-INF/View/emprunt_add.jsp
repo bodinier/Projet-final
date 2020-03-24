@@ -1,5 +1,4 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,31 +28,19 @@
 	          <div class="input-field col s6">
 	            <select id="idLivre" name="idLivre" class="browser-default">
 	              <option value="" disabled selected>-- Livres --</option>
-	              
-	              <c:if test="${! empty livres }">
-        		 	<c:forEach items="${livres}" var="l">
-						<option value="${l.get_ID()}">"<c:out value="${l.get_titre()}"/>, de<c:out value="${l.get_auteur()}" /></option>
-					</c:forEach>
-	              </c:if>
-	              
-	              
-	              <!-- TODO : parcourir la liste des livres disponibles et afficher autant d'options que necessaire, sur la base de l'exemple ci-dessous -->
-               
+	              <!-- TODO : parcourir la liste des livres disponibles et afficher autant d'options que n�cessaire, sur la base de l'exemple ci-dessous -->
+                  <c:forEach items="${livresDispo}" var="item">
+                  <option value="idDuLivre">"${item.titre}", de ${item.auteur}</option>
+                  </c:forEach>
 	            </select>
 	          </div>
 	          <div class="input-field col s6">
 	            <select id="idMembre" name="idMembre" class="browser-default">
 	              <option value="" disabled selected>-- Membres --</option>
-	              
-	              <c:if test="${! empty membres }">
-        		 	<c:forEach items="${membres}" var="m">
-						<option value="${m.get_ID()}"> <c:out value="${m.get_prenom()}" /> <c:out value="${m.get_nom()}" /></option>
-					</c:forEach>
-	              </c:if>
-	             
-				
-	              <!-- TODO : parcourir la liste des membres pouvant emprunter et afficher autant d'options que necessaire, sur la base de l'exemple ci-dessous -->
-                  
+	              <!-- TODO : parcourir la liste des membres pouvant emprunter et afficher autant d'options que n�cessaire, sur la base de l'exemple ci-dessous -->
+                  <c:forEach items="${membres}" var="item">
+                  <option value="idDuMembre">${item.prenom} ${item.nom}</option>
+                  </c:forEach>
 	            </select>
 	          </div>
 	        </div>

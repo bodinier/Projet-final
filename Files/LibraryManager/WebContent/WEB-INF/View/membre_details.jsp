@@ -21,16 +21,16 @@
       </div>
       <div class="row">
       <div class="container">
-      <h5>Détails du membre n°${membre.get_ID()}</h5> <!-- TODO : remplacer 007 par l'id du membre -->
+      <h5>Détails du membre n°${membre.id}</h5> <!-- TODO : remplacer 007 par l'id du membre -->
         <div class="row">
-	      <form action="/LibraryManager/membre_details?id=${membre.get_ID()}" method="post" class="col s12"> <!-- TODO : remplacer idDuMembre par l'id du membre -->
+	      <form action="/LibraryManager/membre_details?id=${membre.id}" method="post" class="col s12"> <!-- TODO : remplacer idDuMembre par l'id du membre -->
 	        <div class="row">
 	          <div class="input-field col s4">
-	            <input id="nom" type="text" value="${membre.get_nom()}" name="nom"> <!-- TODO : remplacer nomDuMembre par le nom du membre -->
+	            <input id="nom" type="text" value="${membre.nom}" name="nom"> <!-- TODO : remplacer nomDuMembre par le nom du membre -->
 	            <label for="nom">Nom</label>
 	          </div>
 	          <div class="input-field col s4">
-	            <input id="prenom" type="text" value="${membre.get_prenom()}" name="prenom"> <!-- TODO : remplacer prenomDuMembre par le prénom du membre -->
+	            <input id="prenom" type="text" value="${membre.prenom}" name="prenom"> <!-- TODO : remplacer prenomDuMembre par le prénom du membre -->
 	            <label for="prenom">Prénom</label>
 	          </div>
 	          <div class="input-field col s4">
@@ -45,17 +45,17 @@
 	        </div>
 	        <div class="row">
 	          <div class="input-field col s12">
-	            <input id="adresse" type="text" value="${membre.get_adresse()}" name="adresse"> <!-- TODO : remplacer adresseDuMembre par l'adresse du membre -->
+	            <input id="adresse" type="text" value="${membre.adresse}" name="adresse"> <!-- TODO : remplacer adresseDuMembre par l'adresse du membre -->
 	            <label for="adresse">Adresse</label>
 	          </div>
 	        </div>
 	        <div class="row">
 	          <div class="input-field col s6">
-	            <input id="email" type="email" value="${membre.get_email()}" name="email"> <!-- TODO : remplacer emailDuMembre par l'email du membre -->
+	            <input id="email" type="email" value="${membre.email}" name="email"> <!-- TODO : remplacer emailDuMembre par l'email du membre -->
 	            <label for="email">E-mail</label>
 	          </div>
 	          <div class="input-field col s6">
-	            <input id="telephone" type="tel" value="${membre.get_telephone()}" name="telephone"> <!-- TODO : remplacer telephoneDuMembre par le téléphone du membre -->
+	            <input id="telephone" type="tel" value="${membre.telephone}" name="telephone"> <!-- TODO : remplacer telephoneDuMembre par le téléphone du membre -->
 	            <label for="telephone">Téléphone</label>
 	          </div>
 	        </div>
@@ -66,7 +66,7 @@
 	      </form>
 	      
 	      <form action="/LibraryManager/membre_delete" method="get" class="col s12">
-	        <input type="hidden" value="${membre.get_ID()}" name="id"> <!-- TODO : remplacer idDuMembre par l'id du membre -->
+	        <input type="hidden" value="${membre.id}" name="id"> <!-- TODO : remplacer idDuMembre par l'id du membre -->
 	        <div class="row center">
 	          <button class="btn waves-effect waves-light red" type="submit">Supprimer le membre
 	            <i class="material-icons right">delete</i>
@@ -86,27 +86,15 @@
               </thead>
               <tbody id="results">
 
-				<c:if test="${! empty emprunts }">
-        		 	<c:forEach items="${emprunts}" var="e">
-						
-						<tr>
-		                  <td><c:out value="${e.get_Livre().get_titre()}" />, de<c:out value="${e.get_Livre().get_auteur()}" /> </td>
-		                  <td><c:out value="${e.get_LocalDateE()}" /></td>
-		                  <td>
-		                    <a href="emprunt_return?id=${e.get_ID()}"><ion-icon class="table-item" name="log-in"></a>
-		                  </td>
-		                </tr>
-						
-					</c:forEach>
-	              </c:if>
-	              
-                
-                
-                
-                
-                
-                
-                
+                <c:forEach var="emprunt" items="${emprunts}">
+                <tr>
+                  <td>${emprunt.membre.prenom} ${emprunt.membre.nom}</td>
+                  <td>${emprunt.dateEmprunt}</td>
+                  <td>
+                    <a href="emprunt_return?id=${emprunt.id}"><ion-icon class="table-item" name="log-in"></a>
+                  </td>
+                </tr>
+                </c:forEach>
 
 				<!-- TODO : parcourir la liste des emprunts en cours pour ce membre et les afficher selon la structure d'exemple ci-dessus -->
               </tbody>

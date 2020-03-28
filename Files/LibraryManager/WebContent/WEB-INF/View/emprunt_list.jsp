@@ -38,7 +38,12 @@
                         <td>${item.membre.prenom} ${item.membre.nom}</td>
                         <td>${item.dateEmprunt}</td>
                         <td>
-                            <a href="emprunt_return?id=idDeLEmprunt"><ion-icon class="table-item" name="log-in"></a>
+                            <c:if test="${(item.dateRetour!=null) == false}">
+                            <a href="emprunt_return?id=${item.id}"><ion-icon class="table-item" name="log-in"></a>
+                            </c:if>
+                            <c:if test="${(item.dateRetour==null) == false}">
+                            <d>${item.dateRetour}</d>
+                            </c:if>
                         </td>
                     </tr>
                 </c:forEach>

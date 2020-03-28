@@ -12,11 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.excilys.librarymanager.exception.ServiceException;
-import com.excilys.librarymanager.model.*;
-import com.excilys.librarymanager.service.*;
+import com.excilys.librarymanager.model.Emprunt;
+import com.excilys.librarymanager.model.Livre;
+import com.excilys.librarymanager.model.Membre;
+import com.excilys.librarymanager.service.IEmpruntService;
+import com.excilys.librarymanager.service.ILivreService;
+import com.excilys.librarymanager.service.IMembreService;
 import com.excilys.librarymanager.service.impl.EmpruntService;
 import com.excilys.librarymanager.service.impl.LivreService;
-
+import com.excilys.librarymanager.service.impl.MembreService;
 
 /**
  * Servlet implementation class LivreDetailsServlet
@@ -24,53 +28,47 @@ import com.excilys.librarymanager.service.impl.LivreService;
 @WebServlet("/LivreDetailsServlet")
 public class LivreDetailsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		IMembreService membreService = MembreService.getInstance();
 		ILivreService livreService = LivreService.getInstance();
-        int idLivre = Integer.parseInt(request.getParameter("id"));
-        Livre livre = null;
-        IEmpruntService empruntService = EmpruntService.getInstance();
+		IEmpruntService empruntService = EmpruntService.getInstance();
+		int id = Integer.parseInt(request.getParameter("id"));
 		List<Emprunt> emprunts = new ArrayList<Emprunt>();
-        try {
-            livre = livreService.getById(idLivre);
-            emprunts = empruntService.getListCurrentByLivre(idLivre);
-        } catch (ServiceException e) {
-			System.out.println(e.getMessage());
+		Livre livre = new Livre();
+		try {
+			livre = livreService.getById(id);
+			emprunts = empruntService.getListCurrentByLivre(id);
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/livre_details.jsp");
-        request.setAttribute("emprunts", emprunts);
-        request.setAttribute("livre", livre);
-        dispatcher.forward(request, response);
+		request.setAttribute("emprunts", emprunts);
+		request.setAttribute("livre", livre);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/livre_details.jsp");
+		dispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ILivreService livreService = LivreService.getInstance();
 		int id = Integer.parseInt(request.getParameter("id"));
-        String titre = request.getParameter("titre");
-        String auteur = request.getParameter("auteur");
-        String isbn = request.getParameter("isbn");
-        ILivreService livreService = LivreService.getInstance();
-        try {
-            Livre livre = livreService.getById(id);
-            livre.setTitre(titre);
-            livre.setAuteur(auteur);
-            livre.setIsbn(isbn);
-            livreService.update(livre);;
-        } catch (ServiceException e) {
-            throw new ServletException(e.getLocalizedMessage());
-        }
-        
-        String ID = String.valueOf(id);
-        
-        response.sendRedirect("/library/livre_details?id="+ID);
+		String titre = request.getParameter("titre");
+		String auteur = request.getParameter("auteur");
+		String isbn = request.getParameter("isbn");
+		Livre livre = new Livre();
+		try {
+			livre = livreService.getById(id);
+			if (!auteur.equals("")) {livre.setAuteur(auteur);}
+			if (!isbn.equals("")) {livre.setIsbn(isbn);}
+			if (!titre.equals("")) {livre.setTitre(titre);}
+			livreService.update(livre);
+		} catch (ServiceException e) {
+			e.printStackTrace();
+			throw new ServletException();
+		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/livre_details.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

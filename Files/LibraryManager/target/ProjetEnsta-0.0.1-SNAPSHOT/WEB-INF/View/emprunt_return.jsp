@@ -30,7 +30,9 @@
 	              <option value="" disabled selected>---</option>
                   <!-- TODO : parcourir la liste des emprunts non rendus et afficher autant d'options que nécessaire, sur la base de l'exemple ci-dessous -->
                   <!-- TODO : si l'attribut id existe, l'option correspondante devra être sélectionnée par défaut (ajouter l'attribut selected dans la balise <option>) -->
-                  <option value="idDeLEmprunt">"Titre du livre", emprunté par Prénom et nom du membre emprunteur</option>
+                  <c:forEach items="${emprunts}" var="item">
+                  <option value="${item.id}">"${item.livre.titre}", emprunté par ${item.membre.prenom} ${item.membre.nom}</option>
+                  </c:forEach>
 	            </select>
 	          </div>
 	        </div>

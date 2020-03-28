@@ -60,7 +60,7 @@ public class ServiceTest {
 		System.out.println("nouvelle liste des livres : " + livres);
 
 	}
-	public static void testMembre() throws ServiceException{
+	public static void testMembre() throws ServiceException, Exception{
 		System.out.println("\n\nDémarrage du test de la table membre : ");
 		IMembreService IMembre = MembreService.getInstance();
 		IEmpruntService IEmprunt = EmpruntService.getInstance();
@@ -100,7 +100,7 @@ public class ServiceTest {
 		membres = IMembre.getList();
 		System.out.println("nouvelle liste des membres : " + membres);
 	}
-	public static void testEmprunt() throws ServiceException{
+	public static void testEmprunt() throws ServiceException, Exception{
 		IEmpruntService IEmprunt = EmpruntService.getInstance();
 		IMembreService IMembre = MembreService.getInstance();
 		System.out.println("\n\n Début des tests de la classe emprunts : ");
@@ -193,7 +193,7 @@ public class ServiceTest {
      * returnBook
      * @throws ServiceException
      */
-    public static void testEmpruntAdavanced() throws ServiceException{
+    public static void testEmpruntAdavanced() throws ServiceException, Exception{
         IMembreService membreService = MembreService.getInstance();
         ILivreService livreService = LivreService.getInstance();
         IEmpruntService empruntService = EmpruntService.getInstance();

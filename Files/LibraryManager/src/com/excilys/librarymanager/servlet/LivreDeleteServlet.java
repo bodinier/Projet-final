@@ -1,6 +1,9 @@
 package com.excilys.librarymanager.servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,50 +13,54 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.excilys.librarymanager.exception.ServiceException;
-import com.excilys.librarymanager.service.*;
+import com.excilys.librarymanager.model.Emprunt;
+import com.excilys.librarymanager.model.Livre;
+import com.excilys.librarymanager.model.Membre;
+import com.excilys.librarymanager.service.IEmpruntService;
+import com.excilys.librarymanager.service.ILivreService;
+import com.excilys.librarymanager.service.IMembreService;
+import com.excilys.librarymanager.service.impl.EmpruntService;
 import com.excilys.librarymanager.service.impl.LivreService;
-import com.excilys.librarymanager.model.*;
+import com.excilys.librarymanager.service.impl.MembreService;
 
 
-/**
- * Servlet implementation class LivreDeleteServlet
- */
 @WebServlet("/LivreDeleteServlet")
 public class LivreDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-        ILivreService livreService = LivreService.getInstance();
-        int idLivre = Integer.parseInt(request.getParameter("id"));
-        Livre livre = null;
-        try {
-            livre = livreService.getById(idLivre);
-        } catch (ServiceException e) {
-			System.out.println(e.getMessage());
+		IMembreService membreService = MembreService.getInstance();
+		ILivreService livreService = LivreService.getInstance();
+		IEmpruntService empruntService = EmpruntService.getInstance();
+		String id = request.getParameter("id");
+		Livre livre = new Livre();
+		List<Emprunt> emprunts = new ArrayList<Emprunt>();
+		List<Livre> livresDispo = new ArrayList<Livre>();
+		try {
+			livre = livreService.getById(Integer.parseInt(id));
+			emprunts = empruntService.getListCurrent();
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/livre_delete.jsp");
-        request.setAttribute("livre", livre);
-        dispatcher.forward(request, response);
+		request.setAttribute("emprunts", emprunts);
+		request.setAttribute("livre", livre);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/livre_delete.jsp");
+		dispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-        ILivreService livreService = LivreService.getInstance();
-        try {
-            livreService.delete(id);
-        } catch (ServiceException e) {
-            throw new ServletException(e.getLocalizedMessage());
-        }
-        response.sendRedirect("/library/livre_list");
+		ILivreService livreService = LivreService.getInstance();
+		int idLivre = Integer.parseInt(request.getParameter("id"));
+		try {
+			livreService.delete(idLivre);
+		} catch (ServiceException e) {
+			e.printStackTrace();
+			throw new ServletException();
+		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/livre_delete.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

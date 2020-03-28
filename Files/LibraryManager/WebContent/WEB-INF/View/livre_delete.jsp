@@ -21,16 +21,16 @@
       </div>
       <div class="row">
       <div class="container">
-      <h5>Suppression du livre n°${livre.get_ID()}</h5> <!-- TODO : afficher l'id du livre au lieu de 42 -->
+      <h5>Suppression du livre n°${livre.id}</h5> <!-- TODO : afficher l'id du livre au lieu de 42 -->
         <div class="row">
-          <p>Êtes-vous sûr de vouloir supprimer le livre ${livre.get_titre()} /> de ${livre.get_auteur()} (code ${livre.get_isbn()}) ?</p> <!-- TODO : compléter les trois informations ci-contre -->
+          <p>Êtes-vous sûr de vouloir supprimer le livre ${livre.titre} de ${livre.auteur} (code ${livre.isbn}) ?</p> <!-- TODO : compléter les trois informations ci-contre -->
 	      <form action="/LibraryManager/livre_delete" method="post" class="col s12">
-            <input type="hidden" value="${livre.get_ID()}" name="id"> <!-- TODO : remplacer idDuLivre par l'id du livre -->
+            <input type="hidden" value="${livre.id}" name="id"> <!-- TODO : remplacer idDuLivre par l'id du livre -->
 	        <div class="row center">
 	          <button class="btn waves-effect waves-light red" type="submit">Supprimer
 	            <i class="material-icons right">delete</i>
 	          </button>
-	          <a class="btn waves-effect waves-light orange" href="/LibraryManager/livre_details?id=${livre.get_ID()}">Annuler</a> <!-- TODO : remplacer idDuLivre par l'id du livre -->
+	          <a class="btn waves-effect waves-light orange" href="/LibraryManager/livre_details?id=${livre.id}">Annuler</a> <!-- TODO : remplacer idDuLivre par l'id du livre -->
 	        </div>
 	      </form>
 	    </div>	    

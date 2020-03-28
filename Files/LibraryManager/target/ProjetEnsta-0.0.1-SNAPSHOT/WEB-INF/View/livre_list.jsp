@@ -31,14 +31,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                
+                <c:forEach items="${livres}" var="item">
                     <tr>
-                        <td>Titre du livre</td>
-                        <td>Nom de l'auteur</td>
-                        <td>ISBN du livre</td>
-                        <td class="center"><a href="livre_details?id=idDuLivre"><ion-icon class="details" name="information-circle-outline"></ion-icon></a></td>
+                        <td>${item.titre}</td>
+                        <td>${item.auteur}</td>
+                        <td>${item.isbn}</td>
+                        <td class="center"><a href="livre_details?id=${item.id}"><ion-icon class="details" name="information-circle-outline"></ion-icon></a></td>
                     </tr>
-                    
+                 </c:forEach>
                     <!-- TODO : parcourir la liste des livres et les afficher selon la structure d'exemple ci-dessus -->
                 </tbody>
             </table>

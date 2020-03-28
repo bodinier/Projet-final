@@ -33,16 +33,16 @@
               </tr>
             </thead>
             <tbody>
-
+            <c:forEach var="membre" items="${membres}">
               <tr>
-                <td>Nom du membre</td>
-                <td>Prénom du membre</td>
-                <td class="hide-on-small-only">Adresse du membre</td>
-                <td class="hide-on-small-only">E-mail du membre</td>
-                <td class="hide-on-small-only">Téléphone du membre</td>
-                <td class="center"><a href="membre_details?id=idDuMembre"><ion-icon class="details" name="information-circle-outline"></ion-icon></a></td>
+                <td>${membre.nom}</td>
+                <td>${membre.prenom}</td>
+                <td class="hide-on-small-only">${membre.adresse}</td>
+                <td class="hide-on-small-only">${membre.email}</td>
+                <td class="hide-on-small-only">${membre.telephone}</td>
+                <td class="center"><a href="membre_details?id=${membre.id}"><ion-icon class="details" name="information-circle-outline"></ion-icon></a></td>
               </tr>
-
+              </c:forEach>
               <!-- TODO : parcourir la liste des membres et les afficher selon la structure d'exemple ci-dessus -->
             </tbody>
           </table>

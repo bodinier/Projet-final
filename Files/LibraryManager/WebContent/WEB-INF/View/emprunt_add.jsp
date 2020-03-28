@@ -21,25 +21,25 @@
       </div>
       <div class="row">
       <div class="container">
-        <h5>Sï¿½lectionnez le livre et le membre emprunteur</h5>
+        <h5>Sélectionnez le livre et le membre emprunteur</h5>
         <div class="row">
 	      <form action="/LibraryManager/emprunt_add" method="post" class="col s12">
 	        <div class="row">
 	          <div class="input-field col s6">
 	            <select id="idLivre" name="idLivre" class="browser-default">
 	              <option value="" disabled selected>-- Livres --</option>
-	              <!-- TODO : parcourir la liste des livres disponibles et afficher autant d'options que nï¿½cessaire, sur la base de l'exemple ci-dessous -->
+	              <!-- TODO : parcourir la liste des livres disponibles et afficher autant d'options que nécessaire, sur la base de l'exemple ci-dessous -->
                   <c:forEach items="${livresDispo}" var="item">
-                  <option value="idDuLivre">"${item.titre}", de ${item.auteur}</option>
+                  <option value="${item.id}">"${item.titre}", de ${item.auteur}</option>
                   </c:forEach>
 	            </select>
 	          </div>
 	          <div class="input-field col s6">
 	            <select id="idMembre" name="idMembre" class="browser-default">
 	              <option value="" disabled selected>-- Membres --</option>
-	              <!-- TODO : parcourir la liste des membres pouvant emprunter et afficher autant d'options que nï¿½cessaire, sur la base de l'exemple ci-dessous -->
+	              <!-- TODO : parcourir la liste des membres pouvant emprunter et afficher autant d'options que nécessaire, sur la base de l'exemple ci-dessous -->
                   <c:forEach items="${membres}" var="item">
-                  <option value="idDuMembre">${item.prenom} ${item.nom}</option>
+                  <option value="${item.id}">${item.prenom} ${item.nom}</option>
                   </c:forEach>
 	            </select>
 	          </div>

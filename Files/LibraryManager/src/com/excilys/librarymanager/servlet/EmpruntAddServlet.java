@@ -1,68 +1,67 @@
 package com.excilys.librarymanager.servlet;
 
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.RequestDispatcher;
 
-import java.io.IOException;
-import com.excilys.librarymanager.service.*;
+import com.excilys.librarymanager.exception.ServiceException;
+import com.excilys.librarymanager.model.Emprunt;
+import com.excilys.librarymanager.model.Livre;
+import com.excilys.librarymanager.model.Membre;
+import com.excilys.librarymanager.service.IEmpruntService;
+import com.excilys.librarymanager.service.ILivreService;
+import com.excilys.librarymanager.service.IMembreService;
 import com.excilys.librarymanager.service.impl.EmpruntService;
 import com.excilys.librarymanager.service.impl.LivreService;
 import com.excilys.librarymanager.service.impl.MembreService;
-import com.excilys.librarymanager.exception.*;
-import com.excilys.librarymanager.model.*;
-import java.time.LocalDate;
 
-
-import java.util.ArrayList;
-import java.util.List;
 /**
  * Servlet implementation class EmpruntAddServlet
  */
 @WebServlet("/EmpruntAddServlet")
 public class EmpruntAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		IMembreService membreService = MembreService.getInstance();
-		List<Membre> membres = new ArrayList<Membre>();
 		ILivreService livreService = LivreService.getInstance();
-		List<Livre> livres = new ArrayList<Livre>();
+		IEmpruntService empruntService = EmpruntService.getInstance();
+		List<Membre> membres = new ArrayList<Membre>();
+		List<Livre> livresDispo = new ArrayList<Livre>();
 		try {
+			livresDispo = livreService.getListDispo();
 			membres = membreService.getListMembreEmpruntPossible();
-			livres = livreService.getListDispo();
 		} catch (ServiceException e) {
-			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/emprunt_add.jsp");
+		request.setAttribute("livresDispo", livresDispo);
 		request.setAttribute("membres", membres);
-		request.setAttribute("livres", livres);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/emprunt_add.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		IEmpruntService empruntService = EmpruntService.getInstance();
 		int idLivre = Integer.parseInt(request.getParameter("idLivre"));
-        int idMembre = Integer.parseInt(request.getParameter("idMembre"));
-        IEmpruntService empruntservice = EmpruntService.getInstance();
-        try {
-            empruntservice.create(idMembre, idLivre, LocalDate.now());
-        } catch (ServiceException e) {
-			System.out.println(e.getMessage());
+		int idMembre = Integer.parseInt(request.getParameter("idMembre"));
+		try {
+			empruntService.create(idMembre, idLivre, LocalDate.now());
+		} catch (Exception e) {
 			e.printStackTrace();
+			throw new ServletException();
 		}
-
-        response.sendRedirect("/library/emprunt_list");
-	} 
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/emprunt_add.jsp");
+		dispatcher.forward(request, response);
+	}
 
 }

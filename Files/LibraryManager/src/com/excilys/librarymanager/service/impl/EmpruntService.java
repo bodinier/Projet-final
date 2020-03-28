@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.excilys.librarymanager.dao.IEmpruntDao;
+import com.excilys.librarymanager.dao.IMembreDao;
 import com.excilys.librarymanager.dao.impl.EmpruntDao;
-import com.excilys.librarymanager.exception.DaoException;
+import com.excilys.librarymanager.dao.impl.MembreDao;
 import com.excilys.librarymanager.exception.ServiceException;
 import com.excilys.librarymanager.model.Emprunt;
 import com.excilys.librarymanager.model.Membre;
@@ -81,13 +82,23 @@ public class EmpruntService implements IEmpruntService {
 	}
 
 	@Override
-	public void create(int idMembre, int idLivre, LocalDate dateEmprunt) throws ServiceException{
+	/**
+	 * On vérifie ici que le membre a bien le droit d'emprunter et que le livre est dispo !
+	 * Si ce n'est pas le cas, on renvoit une exception
+	 */
+	public void create(int idMembre, int idLivre, LocalDate dateEmprunt) throws Exception, ServiceException{
 		IEmpruntDao IEmprunt = EmpruntDao.getInstance();
-		try {
-			IEmprunt.create(idMembre, idLivre, dateEmprunt);
-		} catch (Exception e){
-			throw new ServiceException("Erreur lors de l'appel à EmpruntCreate service", e);
+		IMembreDao IMembre = MembreDao.getInstance();
+		Membre membre = IMembre.getById(idMembre);
+		if (isEmpruntPossible(membre) && isLivreDispo(idLivre)){
+			try {
+				IEmprunt.create(idMembre, idLivre, dateEmprunt);
+			} catch (Exception e){
+				throw new ServiceException("Erreur lors de l'appel à EmpruntCreate service", e);
+			}
 		}
+		else 
+			throw new Exception("Ce membre ne peut plus emprunter de livres.");
 	}
 
 	@Override

@@ -33,28 +33,16 @@
               </tr>
             </thead>
             <tbody>
-            
-            
-           			 <c:if test="${! empty membres }">
-	        		 	<c:forEach items="${membres}" var="m">
-							
-							<tr>
-			                  <td><c:out value="${m.get_nom()}" /> </td>
-			                  <td><c:out value="${m.get_prenom()}" /> </td>
-			                  <td class="hide-on-small-only"><c:out value="${m.get_adresse()}" /> </td>
-			                  <td class="hide-on-small-only"><c:out value="${m.get_email()}" /> </td>
-			                  <td class="hide-on-small-only"><c:out value="${m.get_telephone()}" /> </td>
-	
-			                  
-			                  <td class="center"><a href="membre_details?id=${m.get_ID()}"><ion-icon class="details" name="information-circle-outline"></ion-icon></a></td>
-			                  
-			                </tr>
-							
-						</c:forEach>
-		              </c:if>
-
-              
-
+            <c:forEach var="membre" items="${membres}">
+              <tr>
+                <td>${membre.nom}</td>
+                <td>${membre.prenom}</td>
+                <td class="hide-on-small-only">${membre.adresse}</td>
+                <td class="hide-on-small-only">${membre.email}</td>
+                <td class="hide-on-small-only">${membre.telephone}</td>
+                <td class="center"><a href="membre_details?id=${membre.id}"><ion-icon class="details" name="information-circle-outline"></ion-icon></a></td>
+              </tr>
+              </c:forEach>
               <!-- TODO : parcourir la liste des membres et les afficher selon la structure d'exemple ci-dessus -->
             </tbody>
           </table>

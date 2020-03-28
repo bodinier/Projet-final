@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.excilys.librarymanager.exception.*;
-
-import com.excilys.librarymanager.model.*;
-
-import com.excilys.librarymanager.service.*;
+import com.excilys.librarymanager.exception.ServiceException;
+import com.excilys.librarymanager.model.Abonnement;
+import com.excilys.librarymanager.model.Emprunt;
+import com.excilys.librarymanager.model.Membre;
+import com.excilys.librarymanager.service.IEmpruntService;
+import com.excilys.librarymanager.service.IMembreService;
 import com.excilys.librarymanager.service.impl.EmpruntService;
 import com.excilys.librarymanager.service.impl.MembreService;
 
@@ -25,58 +26,52 @@ import com.excilys.librarymanager.service.impl.MembreService;
 @WebServlet("/MembreDetailsServlet")
 public class MembreDetailsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+      
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		IMembreService membreService = MembreService.getInstance();
-        int idMembre = Integer.parseInt(request.getParameter("id"));
-        Membre membre = null;
-        IEmpruntService empruntService = EmpruntService.getInstance();
+		IEmpruntService empruntService = EmpruntService.getInstance();
+		int id = Integer.parseInt(request.getParameter("id"));
 		List<Emprunt> emprunts = new ArrayList<Emprunt>();
-        try {
-            membre = membreService.getById(idMembre);
-            emprunts = empruntService.getListCurrentByMembre(idMembre);
-        } catch (ServiceException e) {
-			System.out.println(e.getMessage());
+		Membre membre = new Membre();
+		try {
+			membre = membreService.getById(id);
+			emprunts = empruntService.getListCurrentByMembre(id);
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/membre_details.jsp");
-        request.setAttribute("emprunts", emprunts);
-        request.setAttribute("membre", membre);
-        dispatcher.forward(request, response);
+		request.setAttribute("emprunts", emprunts);
+		request.setAttribute("membre", membre);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/membre_details.jsp");
+		dispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		IMembreService membreService = MembreService.getInstance();
 		int id = Integer.parseInt(request.getParameter("id"));
 		String nom = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-        String adresse = request.getParameter("adresse");
-        String email = request.getParameter("email");
-        String telephone = request.getParameter("telephone");
-        Abonnement abonnement = Abonnement.valueOf(request.getParameter("abonnement"));
-        IMembreService membreService = MembreService.getInstance();
-        try {
-        	Membre membre = membreService.getById(id);
-            membre.setNom(nom);
-            membre.setPrenom(prenom);
-            membre.setAdresse(adresse);
-            membre.setEmail(email);
-            membre.setTelephone(telephone);
-            membre.setAbonnement(abonnement);
-            membreService.update(membre);
-        } catch (ServiceException e) {
-            throw new ServletException(e.getLocalizedMessage());
-        }
-        
-        String ID = String.valueOf(id);
-        
-        response.sendRedirect("/library/membre_details?id="+ID);
+		String prenom = request.getParameter("prenom");
+		String adresse = request.getParameter("adresse");
+		String email = request.getParameter("email");
+		String telephone = request.getParameter("telephone");
+		String abonnement = request.getParameter("abonnement");
+		Membre membre = new Membre();
+		try {
+			membre = membreService.getById(id);
+			if (!nom.equals("")) {membre.setNom(nom);}
+			if (!prenom.equals("")) {membre.setPrenom(prenom);}
+			if (!adresse.equals("")) {membre.setAdresse(adresse);}
+			if (!email.equals("")) {membre.setEmail(email);}
+			if (!telephone.equals("")) {membre.setTelephone(telephone);}
+			if (!abonnement.equals("")) {membre.setAbonnement(Abonnement.valueOf(abonnement));}
+			membreService.update(membre);
+		} catch (ServiceException e) {
+			e.printStackTrace();
+			throw new ServletException();
+		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/View/membre_details.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }
